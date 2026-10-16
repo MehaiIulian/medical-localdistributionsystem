@@ -1,0 +1,21 @@
+# Rust build artifacts
+/target/
+Cargo.lock
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
