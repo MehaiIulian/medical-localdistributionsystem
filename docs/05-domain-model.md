@@ -359,7 +359,7 @@ erDiagram
 ## 4. Design notes
 
 - **Multi-tenancy:** every org-owned table has a `tenant_id` (directly or through `pharmacy_id`). Patients are **platform-level**, not tenant-level: one patient can reserve at any chain later (GDS vision).
-- **Case ≈ PNR:** the Case is the central record that travels between the AI, staff and reservations.
+- **Case record:** the Case is the central episode record that coordinates between the AI, staff and reservations.
 - **Summary versions:** every AI update creates a new `CaseSummary` version. Staff see the latest one and can view the history (traceability).
 - **Presence is hot data:** stored in **Redis** (fast, expiring), with a snapshot in Postgres for reports.
 - **Availability in MVP = opening hours + presence.** No `Shift` / `OnCallWindow` entities yet. They return with Modes B/C (doc 03 §6).

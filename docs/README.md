@@ -31,7 +31,7 @@
 |---|---|
 | **LDS** | Local Distribution System, the platform (working name) |
 | **Tenant / Chain** | A pharmacy organization on the platform. The family chain is tenant #1 |
-| **Case** | One health episode of a patient: AI conversation + summary + consults + recommendations (like a PNR in travel) |
+| **Case** | One health episode of a patient: AI conversation + summary + consults + recommendations |
 | **Consult** | A live session between the patient and a human (pharmacist / assistant) inside a Case |
 | **Handoff** | Transfer of a Case from the AI to a human, with the summary |
 | **Summary** | AI-generated structured brief (SOAP-like) of the Case |

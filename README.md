@@ -9,7 +9,7 @@
 
 **A mobile app (Android + iOS) where an AI assistant helps you understand your symptoms and suggests what to do. At any moment you can connect to a real pharmacist who already has your case summary. You can also see which pharmacy has your medicine in stock and reserve it for pickup.**
 
-Long-term, it's a **"GDS for medicine"**: one shared distribution layer that pharmacies and chains connect to once, inspired by Amadeus in travel.
+Long-term, it's a **shared distribution layer for medicine**: one common protocol that pharmacies and chains connect to once, making stock and professional advice accessible across apps.
 
 ---
 
@@ -132,17 +132,13 @@ Other flows: direct stock search → reserve (no consult), consult history, fami
 
 ---
 
-## 8. The GDS analogy (Amadeus → LDS)
+## 8. Distribution Layer Model & Neutrality
 
-| Travel (Amadeus) | LDS (Medicine) |
-|---|---|
-| Airline / hotel (supplier) | Pharmacy, chain (later vet, clinic) |
-| Inventory (seats, rooms) | **Stock**, on-duty pharmacists, opening hours, queue |
-| Availability request | "Who has product X near me?" / "Who can talk to me now?" |
-| Booking + PNR | **Reservation** + **Case record** (AI summary, consult, recommendation) |
-| Ticketing | Pickup confirmed |
-| Travel agency / OTA (channel) | LDS app, chain apps, insurers, partners |
-| EDIFACT / NDC standard | **LDS open API** that pharmacies / ERPs implement once |
+The platform is designed as an open, unified distribution network:
+- **Pharmacies & Chains (Suppliers):** publish real-time stock, available staff, opening hours.
+- **Unified Case & Reservation Protocol:** structured records connecting triage, advice, reservations, and counter fulfillment.
+- **Channels & Partners:** patient mobile app, chain apps, insurers, healthcare partners.
+- **LDS Open API:** an integration layer that pharmacies and ERPs implement once to be reachable everywhere.
 
 > **Strategic tension:** starting inside the family chain is great for speed, but other chains won't join a platform they see as a competitor's app. → **Separate brand + multi-tenant from day one**, and the chain is "tenant #1".
 
@@ -157,7 +153,7 @@ Other flows: direct stock search → reserve (no consult), consult history, fami
 | **C. Pharmacy SaaS** | Pharmacies pay monthly for profile + stock listing + consult console + reservations | Predictable revenue, scales with network | Requires a network of patients first | Phase 2 (other pharmacies join) |
 | **D. Per-reservation fee** | Small fee/commission per completed pickup | Aligned with value (pharmacy pays only when it sells) | Needs reliable pickup tracking | Phase 2 |
 | **E. Patient premium** | Family profiles, reminders, chronic meds refill alerts, priority pharmacist | Recurring B2C | Needs strong habit first | Phase 3 |
-| **F. B2B / GDS API** | Insurers, other apps, manufacturers (anonymized insights) pay for access | The "Amadeus" endgame | Long-term, regulatory care on data | Phase 3+ |
+| **F. B2B Network API** | Insurers, other apps, healthcare partners pay for access | The long-term platform model | Long-term, regulatory care on data | Phase 3+ |
 | Sponsored products (rejected) | Brands pay for placement in AI suggestions | — | **Destroys trust and is ethically/legally dangerous** | Never |
 
 **Suggested path:** **A (pilot) → C + D (network) → E + F (scale)**.
@@ -171,7 +167,7 @@ Other flows: direct stock search → reserve (no consult), consult history, fami
 
 ### Strengths
 - **Family pharmacy chain = real pilot**: real pharmacists, real stock data, real customers, no sales cycle needed.
-- Team's **GDS/Amadeus domain experience**: thinks in distribution layers, availability, booking. That's rare in Romanian health-tech.
+- **Distribution network vision**: thinking in terms of open inventory, real-time availability, and instant reservations across providers rather than a closed single-chain shop. That's rare in Romanian health-tech.
 - A complete loop no one offers locally: **AI advice → pharmacist validation → stock → reservation → pickup**.
 - Pharmacists are licensed, trusted, numerous (~10k pharmacies in RO) and underused as first-line care.
 - Software-only and capital-light. Low start cost.
@@ -186,7 +182,7 @@ Other flows: direct stock search → reserve (no consult), consult history, fami
 
 ### Aspirations
 - *"When someone in Romania feels unwell, they open LDS first: get clear guidance in a minute, talk to a real pharmacist in under 5, and have the medicine reserved at the nearest pharmacy."*
-- Become the **standard layer pharmacies connect to** (the Amadeus of pharmacy).
+- Become the **standard distribution layer pharmacies connect to**.
 - Free or near-free for patients, fair for pharmacies, and **safe above all**.
 - Build a high-quality, scalable system.
 
