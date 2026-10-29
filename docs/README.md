@@ -1,13 +1,13 @@
 # LDS — Design Documentation
 
 > **Phase:** Design. **No code until these documents are reviewed and agreed.**
-> The vision and the SOAR are in [../PROJECT_IDEA.md](../PROJECT_IDEA.md).
+> The vision and the SOAR are in [../README.md](../README.md).
 
 ## Documents
 
 | # | Document | What it contains | Status |
 |---|---|---|---|
-| 01 | [PROJECT_IDEA.md](../PROJECT_IDEA.md) | Vision, problem, pillars, competitors, SOAR, business model, stack options | Draft v3 |
+| 01 | [README.md](../README.md) | Vision, problem, pillars, competitors, SOAR, business model, stack options | Draft v3 |
 | 02 | [Requirements & MVP scope](02-requirements.md) | User stories, MoSCoW, non-functional requirements | Draft v1 |
 | 03 | [Pharmacy team availability](03-pharmacist-availability.md) | Minimal model (counter + AI/callback), roles, routing rules, schedule | Decided v2 |
 | 04 | [Use cases](04-use-cases.md) | UML use case diagrams + use case descriptions | Draft v2 |

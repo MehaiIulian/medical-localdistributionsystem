@@ -15,7 +15,7 @@
 - **Status:** Accepted (2026-10-29)
 - **Context:** one product for Android + iOS, a small team, real-time chat + video + maps + push.
 - **Decision:** Flutter (Dart) for the patient app **and** the staff app (tablet/phone/web builds).
-- **Alternatives:** React Native (TS), Kotlin Multiplatform, native ×2 (see PROJECT_IDEA §11).
+- **Alternatives:** React Native (TS), Kotlin Multiplatform, native ×2 (see README §11).
 - **Consequences:** one codebase, good LiveKit / Firebase / Maps support. Dart is a new (easy) language to learn.
 
 ## ADR-003 Modular monolith, two binaries
@@ -25,7 +25,7 @@
 
 ## ADR-004 Free launch, business model decided after traction
 - **Status:** Accepted (2026-10-29)
-- **Decision:** the app is free for users. The pilot chain covers the running costs. Measure SOAR results for ~3–6 months, then choose among the PROJECT_IDEA §9 options.
+- **Decision:** the app is free for users. The pilot chain covers the running costs. Measure SOAR results for ~3–6 months, then choose among the README §9 options.
 - **Consequences:** keep infrastructure costs low (small instances, LiveKit Cloud free/low tier, a cheap LLM model where possible). Instrument analytics from day one to support the later decision.
 
 ## ADR-005 Rx reservations: register in the app, present at the counter

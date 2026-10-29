@@ -12,7 +12,7 @@ Release a **free** app to the public in the area of the **2–3 family pharmacie
 2. hand over to a real pharmacist who already has the summary,
 3. see stock in the pilot pharmacies and **reserve** OTC and Rx medicines for pickup.
 
-Then **measure** whether it's worth continuing (see the SOAR results in PROJECT_IDEA §10).
+Then **measure** whether it's worth continuing (see the SOAR results in README §10).
 
 ---
 
