@@ -5,29 +5,29 @@
 
 ---
 
-## 1. Decisions ✅
+## 1. Decisions
 
 | Topic | Decision |
 |---|---|
 | Model | **Minimal**: **Mode A (counter + app)** during opening hours, **Mode D (AI + callback)** outside them |
-| On-call / free days | ❌ **No on-call** in MVP (Mode C moved to *Later*) |
-| Dedicated app slot | ❌ Not in MVP (Mode B moved to *Later*) |
+| On-call / free days | **No on-call** in MVP (Mode C moved to *Later*) |
+| Dedicated app slot | Not in MVP (Mode B moved to *Later*) |
 | Who answers | **Pharmacists and pharmacy assistants**: the app works like the counter, and anyone who may answer at the counter may answer in the app |
-| Hours | **08:00–20:00** (⚠️ confirm: every day, or different on Saturday/Sunday? → Q2) |
+| Hours | **08:00–20:00** (to confirm: every day, or different on Saturday/Sunday? → Q2) |
 | Extra cost | Zero: staff answer between counter clients |
 
 ---
 
 ## 2. Modes
 
-### Mode A — 🏪 Counter + App (08:00–20:00)
+### Mode A — Counter + App (08:00–20:00)
 - Every team member on duty has the **staff app** (tablet at the counter or work phone).
 - They toggle **Available** / **Busy** / **Break**. Going Available is only possible **during opening hours**, and everyone goes **Offline automatically at 20:00**.
 - Chat first: the team member replies between clients. Video is optional when the counter is quiet.
 - Default limit: **1 active consult per person** (configurable to 2).
 - The team works **chain-wide**: a team member from pharmacy X can answer a user who is near pharmacy Y. With 2–3 pharmacies this maximizes the chance someone is free.
 
-### Mode D — 🤖 AI + Callback (20:00–08:00, or nobody free)
+### Mode D — AI + Callback (20:00–08:00, or nobody free)
 - The AI keeps helping, with stricter red-flag / "see a doctor" thresholds.
 - The user can leave a **callback request** with the summary attached. It appears at the top of the queue at **08:00**.
 - The app shows **open / non-stop pharmacies nearby** (including outside the chain, from public data) and 112 / UPU info when relevant.
@@ -38,20 +38,20 @@
 ## 3. Who can do what (role permissions)
 
 The default follows the counter: assistants answer questions like they would in person.
-⚠️ **The exact legal scope of pharmacy assistants (asistenți de farmacie) for advice and dispensing must be confirmed by the regulatory adviser** (Q10). That's why permissions are **configurable per role** and not hard-coded.
+**The exact legal scope of pharmacy assistants (asistenți de farmacie) for advice and dispensing must be confirmed by the regulatory adviser** (Q10). That's why permissions are **configurable per role** and not hard-coded.
 
 | Action | Pharmacist | Pharmacy assistant | Notes |
 |---|---|---|---|
-| Receive & accept consult offers | ✅ | ✅ | |
-| Chat / video with patient | ✅ | ✅ | |
-| See AI summary + transcript | ✅ | ✅ | Audited |
-| Validate / edit AI **OTC** recommendation | ✅ | ✅ (default, configurable) | Like at the counter |
-| Answer questions about Rx medicines | ✅ | ⚙️ configurable | Default: assistant transfers to a pharmacist |
-| **Transfer consult to a pharmacist** | — | ✅ | New feature (S-13) |
-| Propose a reservation | ✅ | ✅ | |
-| Process reservations (confirm, ready, pickup) | ✅ | ✅ | |
-| Verify prescription at Rx pickup | ✅ | ⚙️ configurable | Follows current counter practice |
-| Handle callback tickets | ✅ | ✅ | |
+| Receive & accept consult offers | Yes | Yes | |
+| Chat / video with patient | Yes | Yes | |
+| See AI summary + transcript | Yes | Yes | Audited |
+| Validate / edit AI **OTC** recommendation | Yes | Yes (default, configurable) | Like at the counter |
+| Answer questions about Rx medicines | Yes | Configurable | Default: assistant transfers to a pharmacist |
+| **Transfer consult to a pharmacist** | — | Yes | New feature (S-13) |
+| Propose a reservation | Yes | Yes | |
+| Process reservations (confirm, ready, pickup) | Yes | Yes | |
+| Verify prescription at Rx pickup | Yes | Configurable | Follows current counter practice |
+| Handle callback tickets | Yes | Yes | |
 
 ---
 
@@ -95,7 +95,7 @@ flowchart TD
 
 | Day | 00–08 | 08–20 | 20–24 |
 |---|---|---|---|
-| Mon–Sun (⚠️ confirm weekends) | D | **A** (everyone on duty, pharmacists + assistants) | D |
+| Mon–Sun (weekends to confirm) | D | **A** (everyone on duty, pharmacists + assistants) | D |
 
 **No shift planner in MVP.** Availability = *pharmacy open* + *team member toggled Available*. This removes a whole module from the first version. The shift planner returns when Modes B/C are added.
 

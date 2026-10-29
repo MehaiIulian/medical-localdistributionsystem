@@ -259,7 +259,7 @@ classDiagram
 | `PrescriptionStatus` | Registered, VerifiedAtCounter, Refused, Used |
 | `TicketStatus` | Open, Claimed, Done |
 
-> 🦀 **Rust hint:** these map naturally to Rust `enum`s. Look at `serde` (`#[serde(rename_all = "snake_case")]`) for JSON, and at `sqlx::Type` for Postgres enums. Enums with data (e.g., an outcome with a reason) are where Rust shines compared to C++.
+> **Rust implementation note:** these map naturally to Rust `enum`s. Look at `serde` (`#[serde(rename_all = "snake_case")]`) for JSON, and at `sqlx::Type` for Postgres enums. Enums with data (e.g., an outcome with a reason) are where Rust shines compared to C++.
 
 ---
 

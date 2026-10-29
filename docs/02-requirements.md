@@ -38,7 +38,7 @@ Then **measure** whether it's worth continuing (see the SOAR results in PROJECT_
 | P-AI-5 | As a user, I can **photograph / scan** medicines I have at home so the AI knows them | S |
 | P-AI-6 | As a user, I see AI answers **streamed** (word by word) | S |
 | P-AI-7 | As a user, I can see my **case history** | S |
-| P-AI-8 | As a user, I can rate the AI answer (👍/👎) | S |
+| P-AI-8 | As a user, I can rate the AI answer (thumbs up / down) | S |
 
 ### 2.3 Human handoff
 | ID | User story | Prio |

@@ -40,7 +40,7 @@ sequenceDiagram
     end
 ```
 
-## SD-2 Async handoff to a pharmacist while the user browses (UC-05) ⭐
+## SD-2 Async handoff to a pharmacist while the user browses (UC-05)
 
 ```mermaid
 sequenceDiagram

@@ -1,7 +1,7 @@
 # 04 — Use Cases (UML)
 
 > Mermaid has no native use case diagram, so use cases are drawn as flowcharts:
-> 🧍 actors = rectangles on the sides, use cases = rounded nodes inside the system boundary (subgraph).
+> actors = rectangles on the sides, use cases = rounded nodes inside the system boundary (subgraph).
 
 ---
 
@@ -28,7 +28,7 @@
 
 ```mermaid
 flowchart LR
-    Patient[🧍 Patient]
+    Patient[Patient]
 
     subgraph LDS["LDS Mobile App"]
         UC1([UC-01 Sign up / log in])
@@ -47,9 +47,9 @@ flowchart LR
         UC12([UC-12 Manage reservations])
     end
 
-    AI[🤖 AI Assistant]
-    RFE[🚨 Red-flag engine]
-    Push[📲 Push service]
+    AI[AI Assistant]
+    RFE[Red-flag engine]
+    Push[Push service]
 
     Patient --- UC1
     Patient --- UC2
@@ -78,9 +78,9 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    Team[🧑‍⚕️ Pharmacy team member<br/>pharmacist or assistant]
-    Ph[💊 Pharmacist]
-    As[🧑‍💼 Pharmacy assistant]
+    Team[Pharmacy team member<br/>pharmacist or assistant]
+    Ph[Pharmacist]
+    As[Pharmacy assistant]
 
     subgraph STAFF["LDS Staff App"]
         S1([UC-20 Set presence])
@@ -97,8 +97,8 @@ flowchart LR
         S13([UC-32 Flag product out of stock])
     end
 
-    Push[📲 Push service]
-    Video[🎥 Video service]
+    Push[Push service]
+    Video[Video service]
 
     Ph -. "is a" .-> Team
     As -. "is a" .-> Team
@@ -129,8 +129,8 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    CA[🏢 Chain admin]
-    PA[🛡️ Platform admin]
+    CA[Chain admin]
+    PA[Platform admin]
 
     subgraph ADMIN["LDS Admin"]
         A1([UC-40 Manage pharmacies])
@@ -144,7 +144,7 @@ flowchart LR
         A9([UC-53 Maintain red-flag rules])
     end
 
-    ERP[🗄️ Pharmacy ERP]
+    ERP[Pharmacy ERP]
 
     CA --- A1
     CA --- A2

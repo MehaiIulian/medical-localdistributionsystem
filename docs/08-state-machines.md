@@ -2,7 +2,7 @@
 
 > Each of these is persisted in Postgres. Transitions happen in the `domain` crate as pure functions:
 > `fn transition(state, event) -> Result<NewState, DomainError>`.
-> 🦀 **Rust hint:** model states as an `enum` and transitions with `match (state, event)`. The compiler forces you to handle every combination, which C++ `switch` won't.
+> **Rust implementation note:** model states as an `enum` and transitions with `match (state, event)`. The compiler forces you to handle every combination, which C++ `switch` won't.
 
 ---
 
@@ -70,7 +70,7 @@ stateDiagram-v2
     Withdrawn --> [*]
 ```
 
-> ⚠️ **Concurrency:** two pharmacists can tap "Accept" at the same time. Solve it in the DB:
+> **Concurrency:** two pharmacists can tap "Accept" at the same time. Solve it in the DB:
 > `UPDATE consults SET status='active', staff_id=$1 WHERE id=$2 AND status='offering'`. Exactly one gets `rows_affected = 1`. (This is a nice first exercise in optimistic concurrency with `sqlx`.)
 
 ## 4. Reservation

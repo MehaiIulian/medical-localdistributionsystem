@@ -1,6 +1,6 @@
 # 11 — Stock Integration
 
-> **Status:** ❓ Unknown how the chain's pharmacy software exposes stock. **Founder to verify** (Q1).
+> **Status:** Unknown how the chain's pharmacy software exposes stock. **To be verified with the chain's IT / software vendor** (Q1).
 > **Design principle:** the platform doesn't depend on one integration method. A **stock connector** abstraction lets us plug in whatever the chain's software allows, and there's a **manual fallback** that works from day one.
 
 ---
@@ -38,7 +38,7 @@
 | 1 | **Vendor API** | Real time / minutes | Medium | Best long-term. May cost money |
 | 2 | **Read-only DB access / view** | Minutes | Medium | Needs a small agent near the DB if the DB is local (no public exposure) |
 | 3 | **Scheduled export file** (CSV/XML) → upload / SFTP / watched folder | 15 min – daily | Low | Very common in Romanian pharmacy software. Robust |
-| 4 | **Manual CSV upload** in the admin panel | When someone uploads | Very low | ⭐ **Day-one fallback**. Works for any software that can export to Excel |
+| 4 | **Manual CSV upload** in the admin panel | When someone uploads | Very low | **Day-one fallback**. Works for any software that can export to Excel |
 | 5 | **Manual stock flags** in the staff app ("out of stock" toggle for top products) | Live, partial | Very low | A complement to the others, for fast-moving products |
 
 **MVP plan:** build the **connector interface + option 4 (CSV upload) + option 5 (manual flags)** first. Then add option 1, 2 or 3 once Q1 is answered.
@@ -73,7 +73,7 @@ flowchart LR
     N --> UNM["Unmatched products report"]
 ```
 
-> 🦀 **Rust hint:** define a trait like `StockSource` with an async method that returns a list of `(pharmacy, product_code, quantity)` rows. Each option is one `impl` of that trait. The worker doesn't care which one it's talking to. This is the hexagonal "port & adapter" idea from doc 06 (≈ an abstract base class in C++, but checked at compile time with generics or used dynamically with `Box<dyn StockSource>`).
+> **Rust implementation note:** define a trait like `StockSource` with an async method that returns a list of `(pharmacy, product_code, quantity)` rows. Each option is one `impl` of that trait. The worker doesn't care which one it's talking to. This is the hexagonal "port & adapter" idea from doc 06 (≈ an abstract base class in C++, but checked at compile time with generics or used dynamically with `Box<dyn StockSource>`).
 
 ---
 

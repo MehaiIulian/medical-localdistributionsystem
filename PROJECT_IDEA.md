@@ -1,6 +1,6 @@
 # LDS — Local Distribution System for Pharmacy & Medicine (Romania)
 
-> **Status:** 🧠 Brainstorming / design phase. No code yet, on purpose.
+> **Status:** Brainstorming / design phase. No code yet, on purpose.
 > We agree on the design and the SOAR first, then lock the stack.
 
 ---
@@ -13,7 +13,7 @@ Long-term, it's a **"GDS for medicine"**: one shared distribution layer that pha
 
 ---
 
-## 2. Decisions taken so far ✅
+## 2. Decisions taken so far
 
 | Topic | Decision |
 |---|---|
@@ -23,16 +23,16 @@ Long-term, it's a **"GDS for medicine"**: one shared distribution layer that pha
 | Commerce | **Stock visibility** per pharmacy + **medicine reservation** for pickup. |
 | Platform | **Native-feeling phone app for Android and iOS**. |
 | Backend requirement | **Scalable, fast, async-first** (chat connecting in the background while the user navigates the app, live stock, notifications). |
-| Who pays | 🟡 **Launch free** for everyone, measure traction, then decide (options in §9). The pilot chain covers the running costs. |
+| Who pays | **Launch free** for everyone, measure traction, then decide (options in §9). The pilot chain covers the running costs. |
 | Pilot size | **2–3 pharmacies** of the family chain (good: small and controllable). |
 | Reservations | **OTC**: reserve and pay at pickup. **Rx**: the user registers the prescription in the app, reserves, and **presents the prescription at the counter** to get the medicine. |
-| Pharmacist availability | ✅ **Minimal model**: the pharmacy team answers from the counter during **08:00–20:00**. Outside those hours: AI + callback request. **No on-call.** See [docs/03](docs/03-pharmacist-availability.md). |
-| Who answers in the app | ✅ **Pharmacists and pharmacy assistants**, like at the counter. Assistants can transfer to a pharmacist. |
-| Stock integration | ❓ Founder verifying how the chain's software exposes stock. MVP fallback: CSV upload + manual flags. See [docs/11](docs/11-stock-integration.md). |
-| Backend language | ✅ **Rust** (Axum + Tokio). Learning project: go slowly, founder implements, assistant gives hints. |
-| Mobile | ✅ **Flutter** (Android + iOS from one codebase). |
-| Regulatory | ✅ Regulatory adviser to confirm the AI / telepharmacy / reservation rules **before launch**. |
-| Process | ✅ **Design first**: diagrams, UML and documentation in [docs/](docs/README.md) before any code. |
+| Pharmacist availability | **Minimal model**: the pharmacy team answers from the counter during **08:00–20:00**. Outside those hours: AI + callback request. **No on-call.** See [docs/03](docs/03-pharmacist-availability.md). |
+| Who answers in the app | **Pharmacists and pharmacy assistants**, like at the counter. Assistants can transfer to a pharmacist. |
+| Stock integration | Pending verification of how the chain's software exposes stock. MVP fallback: CSV upload + manual flags. See [docs/11](docs/11-stock-integration.md). |
+| Backend language | **Rust** (Axum + Tokio). |
+| Mobile | **Flutter** (Android + iOS from one codebase). |
+| Regulatory | Regulatory adviser to confirm the AI / telepharmacy / reservation rules **before launch**. |
+| Process | **Design first**: diagrams, UML and documentation in [docs/](docs/README.md) before any code. |
 
 ---
 
@@ -48,14 +48,14 @@ Long-term, it's a **"GDS for medicine"**: one shared distribution layer that pha
 
 ## 4. Product pillars
 
-### 4.1 🤖 AI Health Assistant (AI-first consult)
+### 4.1 AI Health Assistant (AI-first consult)
 - Guided conversation: symptoms, duration, age, allergies, chronic conditions, current medication, pregnancy, etc.
 - Answers **follow-up questions about possible causes / diagnostics** in plain language ("what could this be?", "when should I worry?").
 - Suggests **OTC treatment options** and self-care, checks interactions with the medicines the user already takes, and says clearly when a doctor or 112 is needed.
 - The user can scan or photograph medicines at home so the AI knows what's available.
 - Produces a **structured case summary** (SOAP/SBAR style) that's always kept up to date.
 
-### 4.2 🧑‍⚕️ Connect to a human (any time)
+### 4.2 Connect to a human (any time)
 - A "Talk to a pharmacist" button is available throughout the AI chat.
 - The request goes to the queue of available pharmacists (pilot: family chain staff). Later: other roles (pharmacy assistant, doctor, vet).
 - **Async by design:** the user keeps using the app (browsing stock, reserving) while the connection is pending. They get an in-app banner or push notification when the pharmacist joins.
@@ -63,18 +63,18 @@ Long-term, it's a **"GDS for medicine"**: one shared distribution layer that pha
 - Chat, upgradeable to **voice/video** (to show packaging, a rash, etc.).
 - The pharmacist can **confirm, adjust or override** the AI's suggestion, then push a **reservation** directly to the user.
 
-### 4.3 📦 Stock & Reservation
+### 4.3 Stock & Reservation
 - See **which pharmacy has a product** (available / low / not available), sorted by distance and opening hours.
 - **Reserve for pickup** with a hold time (e.g., 2–24h) and **pay at the pharmacy** in the MVP (no online payment = less regulation and less complexity).
 - Reservation can come from search, from the AI's suggestion, or from the pharmacist.
 - The pharmacy gets the reservation in a simple dashboard or tablet app and confirms / prepares it.
 - Status updates: *confirmed → ready for pickup → picked up / expired*.
 
-### 4.4 🗺️ Pharmacies near me
+### 4.4 Pharmacies near me
 - Map + list, open now / non-stop, route via Google/Apple Maps deep links.
 - Phase 2: queue-aware routing (`total time = travel time + queue time`).
 
-### 4.5 🚨 Safety layer (non-negotiable)
+### 4.5 Safety layer (non-negotiable)
 - A **rule-based red-flag engine runs before and alongside the AI** (chest pain, stroke signs, breathing difficulty, severe allergic reaction, poisoning, suicidal ideation…). It shows an immediate 112 / UPU screen.
 - AI guardrails: no Rx prescribing, child/pregnancy/elderly caution rules, and an escalation to a human when confidence is low.
 
@@ -84,12 +84,12 @@ Long-term, it's a **"GDS for medicine"**: one shared distribution layer that pha
 
 | | **Doctronic** | **LDS (us)** |
 |---|---|---|
-| AI symptom chat | ✅ Free, 24/7 | ✅ Free, 24/7 |
-| AI summary handed to a human | ✅ SOAP note to a doctor | ✅ Summary to a **pharmacist** (later doctor) |
+| AI symptom chat | Yes, free, 24/7 | Free, 24/7 |
+| AI summary handed to a human | Yes, SOAP note to a doctor | Yes, summary to a **pharmacist** (later doctor) |
 | Human consult | Licensed US doctor, video (~\$39/visit or insurance) | **Pharmacist** (chat → video). Cheaper, more accessible, OTC-focused |
 | Prescriptions | Doctor sends e-Rx to pharmacy | Not in MVP (OTC focus). Later via partner doctors |
-| **Pharmacy stock visibility** | ❌ | ✅ |
-| **Medicine reservation / pickup** | ❌ | ✅ |
+| **Pharmacy stock visibility** | No | Yes |
+| **Medicine reservation / pickup** | No | Yes |
 | Connected to physical pharmacies | Indirect (e-Rx) | **Direct**: the pharmacy is part of the network |
 | Market | USA | Romania → CEE |
 
@@ -144,7 +144,7 @@ Other flows: direct stock search → reserve (no consult), consult history, fami
 | Travel agency / OTA (channel) | LDS app, chain apps, insurers, partners |
 | EDIFACT / NDC standard | **LDS open API** that pharmacies / ERPs implement once |
 
-> ⚠️ **Strategic tension:** starting inside the family chain is great for speed, but other chains won't join a platform they see as a competitor's app. → **Separate brand + multi-tenant from day one**, and the chain is "tenant #1".
+> **Strategic tension:** starting inside the family chain is great for speed, but other chains won't join a platform they see as a competitor's app. → **Separate brand + multi-tenant from day one**, and the chain is "tenant #1".
 
 ---
 
@@ -158,7 +158,7 @@ Other flows: direct stock search → reserve (no consult), consult history, fami
 | **D. Per-reservation fee** | Small fee/commission per completed pickup | Aligned with value (pharmacy pays only when it sells) | Needs reliable pickup tracking | Phase 2 |
 | **E. Patient premium** | Family profiles, reminders, chronic meds refill alerts, priority pharmacist | Recurring B2C | Needs strong habit first | Phase 3 |
 | **F. B2B / GDS API** | Insurers, other apps, manufacturers (anonymized insights) pay for access | The "Amadeus" endgame | Long-term, regulatory care on data | Phase 3+ |
-| ❌ Sponsored products | Brands pay for placement in AI suggestions | — | **Destroys trust and is ethically/legally dangerous** | Never |
+| Sponsored products (rejected) | Brands pay for placement in AI suggestions | — | **Destroys trust and is ethically/legally dangerous** | Never |
 
 **Suggested path:** **A (pilot) → C + D (network) → E + F (scale)**.
 **Pilot KPI to justify A:** extra sales from reservations + consult-to-reservation conversion vs. the app's running cost.
@@ -169,14 +169,14 @@ Other flows: direct stock search → reserve (no consult), consult history, fami
 
 > **S**trengths · **O**pportunities · **A**spirations · **R**esults
 
-### 🟢 Strengths
+### Strengths
 - **Family pharmacy chain = real pilot**: real pharmacists, real stock data, real customers, no sales cycle needed.
-- Founder's **GDS/Amadeus experience**: thinks in distribution layers, availability, booking. That's rare in Romanian health-tech.
+- Team's **GDS/Amadeus domain experience**: thinks in distribution layers, availability, booking. That's rare in Romanian health-tech.
 - A complete loop no one offers locally: **AI advice → pharmacist validation → stock → reservation → pickup**.
 - Pharmacists are licensed, trusted, numerous (~10k pharmacies in RO) and underused as first-line care.
 - Software-only and capital-light. Low start cost.
 
-### 🔵 Opportunities
+### Opportunities
 - **Doctronic proves the model** (AI-first + human handoff) in the US. Nothing equivalent exists in Romania for pharmacies.
 - No **neutral cross-pharmacy stock + reservation** platform in Romania.
 - UPU overload: public / institutional interest in diverting minor cases.
@@ -184,13 +184,13 @@ Other flows: direct stock search → reserve (no consult), consult history, fami
 - LLMs make high-quality intake, Q&A and summaries cheap.
 - Expansion: vet pharmacies, clinics, insurers, CEE markets, GDS API.
 
-### 🟣 Aspirations
+### Aspirations
 - *"When someone in Romania feels unwell, they open LDS first: get clear guidance in a minute, talk to a real pharmacist in under 5, and have the medicine reserved at the nearest pharmacy."*
 - Become the **standard layer pharmacies connect to** (the Amadeus of pharmacy).
 - Free or near-free for patients, fair for pharmacies, and **safe above all**.
-- Build a high-quality, scalable system (and learn a modern stack deeply along the way).
+- Build a high-quality, scalable system.
 
-### 🟠 Results (pilot targets, to refine)
+### Results (pilot targets, to refine)
 | Metric | Target |
 |---|---|
 | Pharmacies live in pilot | All (or N) pharmacies of the family chain |
@@ -201,7 +201,7 @@ Other flows: direct stock search → reserve (no consult), consult history, fami
 | Consult → reservation conversion | > 25% |
 | Reservations picked up (not expired) | > 80% |
 | Red flags routed to 112 | **100%** (safety metric, audited) |
-| App rating | ≥ 4.5 ★ |
+| App rating | ≥ 4.5 / 5 |
 
 ---
 
@@ -211,10 +211,10 @@ Other flows: direct stock search → reserve (no consult), consult history, fami
 
 | Option | Language | Pros | Cons | Verdict |
 |---|---|---|---|---|
-| **Flutter** | Dart | One codebase, near-native performance, beautiful custom UI, strong WebRTC/LiveKit SDKs, maps, push. Very productive | Dart is used only in Flutter. Larger app size | ⭐ **Top pick** |
-| **React Native (Expo)** | TypeScript | Huge ecosystem, TS shared with a web dashboard, LiveKit SDK, OTA updates | Native modules sometimes painful. Performance slightly behind Flutter for heavy UI | ⭐ Strong alternative |
+| **Flutter** | Dart | One codebase, near-native performance, beautiful custom UI, strong WebRTC/LiveKit SDKs, maps, push. Very productive | Dart is used only in Flutter. Larger app size | **Top pick** |
+| **React Native (Expo)** | TypeScript | Huge ecosystem, TS shared with a web dashboard, LiveKit SDK, OTA updates | Native modules sometimes painful. Performance slightly behind Flutter for heavy UI | Strong alternative |
 | **Kotlin Multiplatform + Compose MP** | Kotlin | Shared logic, native feel, can share models with a Kotlin backend | iOS side less mature, smaller community | Good, more risk |
-| **Native (Swift + Kotlin)** | Swift, Kotlin | Best possible UX and platform access | **Two apps to build and maintain** | ❌ Not for a small team |
+| **Native (Swift + Kotlin)** | Swift, Kotlin | Best possible UX and platform access | **Two apps to build and maintain** | Not for a small team |
 
 The **pharmacist console and reservation dashboard** can be the same Flutter app (tablet/web build) or a separate web app.
 
@@ -224,14 +224,14 @@ What the backend must handle concurrently: WebSocket chat, presence (who's onlin
 
 | Option | Concurrency model | Performance | Real-time / chat | Dev speed | Learning curve | Notes |
 |---|---|---|---|---|---|---|
-| **Rust** (Axum + Tokio + SQLx) | async/await on Tokio | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | Steep | Fastest and safest. Original learning goal. Slower to iterate |
-| **Go** (chi/Echo/Fiber + goroutines) | Goroutines + channels | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Easy | Very pragmatic. Simple to hire for. Great for APIs and websockets |
-| **Elixir** (Phoenix + Channels/Presence) | BEAM lightweight processes | ⭐⭐⭐ (latency ⭐⭐⭐⭐⭐) | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Medium | **Built for chat/presence** (WhatsApp/Discord-style). Fault tolerant. Niche talent |
-| **Kotlin** (Ktor + coroutines) | Coroutines | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Medium | Mature JVM. Pairs well with KMP mobile |
-| **TypeScript** (NestJS / Fastify) | Event loop | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Easy | Fastest MVP, especially with React Native. CPU-bound limits |
-| **Python** (FastAPI) | asyncio | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | Easy | Best AI ecosystem. Use as an **AI microservice**, not the core |
+| **Rust** (Axum + Tokio + SQLx) | async/await on Tokio | 5/5 | 4/5 | 2/5 | Steep | Fastest and safest. Slower to iterate |
+| **Go** (chi/Echo/Fiber + goroutines) | Goroutines + channels | 4/5 | 4/5 | 4/5 | Easy | Very pragmatic. Simple to hire for. Great for APIs and websockets |
+| **Elixir** (Phoenix + Channels/Presence) | BEAM lightweight processes | 3/5 (latency 5/5) | 5/5 | 4/5 | Medium | **Built for chat/presence** (WhatsApp/Discord-style). Fault tolerant. Niche talent |
+| **Kotlin** (Ktor + coroutines) | Coroutines | 4/5 | 4/5 | 4/5 | Medium | Mature JVM. Pairs well with KMP mobile |
+| **TypeScript** (NestJS / Fastify) | Event loop | 3/5 | 4/5 | 5/5 | Easy | Fastest MVP, especially with React Native. CPU-bound limits |
+| **Python** (FastAPI) | asyncio | 2/5 | 3/5 | 4/5 | Easy | Best AI ecosystem. Use as an **AI microservice**, not the core |
 
-> 💡 **Reality check on scale:** even a national pharmacy app means thousands to tens of thousands of concurrent connections. **All of the above can handle that.** The real criteria are **dev speed, reliability, and what you want to learn**. Good async design (queues, pub/sub, push notifications) matters more than raw language speed.
+> **Reality check on scale:** even a national pharmacy app means thousands to tens of thousands of concurrent connections. **All of the above can handle that.** The real criteria are **dev speed, reliability, and what you want to learn**. Good async design (queues, pub/sub, push notifications) matters more than raw language speed.
 
 ### 11.3 Shared infrastructure (language-independent)
 - **PostgreSQL + PostGIS**: data + geo queries ("pharmacies with stock near me").
@@ -246,24 +246,24 @@ What the backend must handle concurrently: WebSocket chat, presence (who's onlin
 
 | Combo | Why | Trade-off |
 |---|---|---|
-| **Flutter + Rust** | Max performance + safety. Fulfills the Rust learning goal. Modular monolith on Axum/Tokio | Slower MVP. Steeper learning |
+| **Flutter + Rust** | Max performance + safety. Modular monolith on Axum/Tokio | Slower MVP. Steeper learning curve |
 | **Flutter + Go** | Fastest *robust* path. Simple async with goroutines | Less "fancy" domain modeling |
 | **Flutter + Elixir** | Best-in-class real-time chat/presence/queue | Smaller ecosystem/talent |
 | **React Native + TypeScript (NestJS)** | One language everywhere. Fastest to first demo | Less performant/robust long-term |
 
-**Current recommendation (to discuss):** **Flutter** for mobile + **Rust (Axum/Tokio)** or **Go** for the backend, as a **modular monolith** (not microservices yet). Use **LiveKit** for video, plus a small **Python AI service** only if needed. Pick Rust if learning it is a priority and the timeline allows. Pick Go if speed-to-pilot matters most.
+**Decision:** **Flutter** for mobile + **Rust (Axum/Tokio)** for the backend, as a **modular monolith** (not microservices yet). **LiveKit** for video, plus a small **Python AI service** only if needed. See [docs/10-decisions.md](docs/10-decisions.md) (ADR-001, ADR-002).
 
 ---
 
 ## 12. Risks & constraints
 
-- **⚠️ AI that "recommends treatment" = regulated.** In the EU, software that gives diagnostic/therapeutic recommendations is likely a **medical device (MDR, Rule 11 → class IIa or higher)** and **high-risk under the EU AI Act**. Options to discuss:
+- **AI that "recommends treatment" = regulated.** In the EU, software that gives diagnostic/therapeutic recommendations is likely a **medical device (MDR, Rule 11 → class IIa or higher)** and **high-risk under the EU AI Act**. Options to discuss:
   1. **Human-in-the-loop:** the AI informs, explains and drafts. Treatment recommendations are **validated by a pharmacist** before being final.
   2. AI limited to **general health information + OTC info from official leaflets**, with clear disclaimers. Escalate to a human for anything specific.
   3. Go for **CE certification** later, once the product is proven.
   → **Must validate with a regulatory/legal advisor before launch.**
-- **Telepharmacy in Romania:** what a pharmacist may advise remotely, Colegiul Farmaciștilor rules. ⚠️ To verify.
-- **Reservations:** OTC reservation with pay-at-pickup is likely simplest. Rx products require the prescription at pickup (e-prescription / CNAS rules). Online *sale* of OTC needs ANMDMR authorization + the EU common logo. ⚠️ To verify.
+- **Telepharmacy in Romania:** what a pharmacist may advise remotely, Colegiul Farmaciștilor rules. To verify.
+- **Reservations:** OTC reservation with pay-at-pickup is likely simplest. Rx products require the prescription at pickup (e-prescription / CNAS rules). Online *sale* of OTC needs ANMDMR authorization + the EU common logo. To verify.
 - **GDPR / health data:** explicit consent, minimization, EU hosting, encryption, audit logs, retention policy, DPIA.
 - **Stock accuracy:** show levels (available / low) rather than exact counts. Sync frequency depends on the chain's ERP.
 - **Pharmacist availability:** define staffed hours. Outside them, the AI only + "nearest open pharmacy".

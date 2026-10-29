@@ -9,18 +9,18 @@
 
 ```mermaid
 flowchart TB
-    Patient["🧍 Patient<br/>(mobile app)"]
-    Staff["🧑‍⚕️ Pharmacist / staff<br/>(staff app)"]
-    Admin["🏢 Chain admin"]
+    Patient["Patient<br/>(mobile app)"]
+    Staff["Pharmacist / staff<br/>(staff app)"]
+    Admin["Chain admin"]
 
     LDS["LDS Platform"]
 
-    LLM["🤖 LLM provider<br/>(EU region)"]
-    ERP["🗄️ Pharmacy ERP<br/>(family chain)"]
-    Push["📲 FCM / APNs"]
-    LK["🎥 LiveKit<br/>(video)"]
-    SMS["✉️ SMS provider<br/>(OTP)"]
-    Maps["🗺️ Google / Apple Maps<br/>(deep links)"]
+    LLM["LLM provider<br/>(EU region)"]
+    ERP["Pharmacy ERP<br/>(family chain)"]
+    Push["FCM / APNs"]
+    LK["LiveKit<br/>(video)"]
+    SMS["SMS provider<br/>(OTP)"]
+    Maps["Google / Apple Maps<br/>(deep links)"]
 
     Patient --> LDS
     Staff --> LDS
@@ -38,27 +38,27 @@ flowchart TB
 ```mermaid
 flowchart TB
     subgraph Clients
-        PA["📱 Patient app<br/>Flutter · Android + iOS"]
-        SA["💻 Staff app<br/>Flutter · tablet / phone / web"]
+        PA["Patient app<br/>Flutter · Android + iOS"]
+        SA["Staff app<br/>Flutter · tablet / phone / web"]
     end
 
     subgraph Backend["LDS Backend (Rust)"]
-        API["⚙️ API server<br/>Axum + Tokio<br/>REST + WebSocket"]
-        WRK["⏱️ Worker<br/>Tokio<br/>timers, jobs, stock sync"]
+        API["API server<br/>Axum + Tokio<br/>REST + WebSocket"]
+        WRK["⏱Worker<br/>Tokio<br/>timers, jobs, stock sync"]
     end
 
     subgraph Data
-        PG[("🐘 PostgreSQL + PostGIS")]
-        RD[("🟥 Redis<br/>presence · pub/sub · queues")]
-        OBJ[("🪣 Object storage<br/>S3-compatible, EU")]
+        PG[("PostgreSQL + PostGIS")]
+        RD[("Redis<br/>presence · pub/sub · queues")]
+        OBJ[("Object storage<br/>S3-compatible, EU")]
     end
 
     subgraph External
-        LLM["🤖 LLM API"]
-        LK["🎥 LiveKit"]
-        PUSH["📲 FCM / APNs"]
-        SMS["✉️ SMS OTP"]
-        ERP["🗄️ Chain ERP"]
+        LLM["LLM API"]
+        LK["LiveKit"]
+        PUSH["FCM / APNs"]
+        SMS["SMS OTP"]
+        ERP["Chain ERP"]
     end
 
     PA -- "HTTPS REST" --> API
@@ -149,7 +149,7 @@ flowchart LR
     OB --> PS[("Redis pub/sub<br/>channel user:ID")]
     PS --> N1["API node 1<br/>WS hub"]
     PS --> N2["API node 2<br/>WS hub"]
-    N2 --> C["📱 Patient app<br/>(connected to node 2)"]
+    N2 --> C["Patient app<br/>(connected to node 2)"]
     OB --> Q[("Redis queue<br/>push jobs")]
     Q --> W["Worker"] --> P["FCM / APNs"]
 ```
@@ -172,7 +172,7 @@ flowchart TB
     end
 ```
 
-> 🦀 **Rust learning hints (no code yet):**
+> **Rust implementation notes:**
 > - `tokio::spawn`: lightweight tasks (like goroutines). Thousands are cheap.
 > - `tokio::sync::mpsc`: one channel per WebSocket connection (hub → writer task).
 > - `tokio::sync::broadcast`: one-to-many in-process fan-out.
